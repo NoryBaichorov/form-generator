@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
-require "minitest/power_assert"
 
 # TestClass
 class TestHexletCode < Minitest::Test
@@ -16,7 +15,7 @@ class TestHexletCode < Minitest::Test
   def test_it_does_something_useful
     expected = "<input type=\"value\" src=\"path/to/dict\">"
 
-    assert { expected == @build }
+    assert expected == @build
   end
 
   test_methods = TestHexletCode.new({}).methods.select { |method| method.start_with? "test_" }
