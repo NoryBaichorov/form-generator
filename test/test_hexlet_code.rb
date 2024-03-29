@@ -2,6 +2,7 @@
 
 require_relative "test_helper"
 
+# Class TstHexletCode
 class TestHexletCode < Minitest::Test
   def setup
     @user = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -80,7 +81,7 @@ class TestHexletCode < Minitest::Test
     result = HexletCode.form_for @current_user do |f|
       f.input :name
       f.input :job
-      f.submit 'Wow'
+      f.submit "Wow"
     end
     assert_equal expected, result
   end
@@ -96,7 +97,7 @@ class TestHexletCode < Minitest::Test
   end
 
   def read_fixture(file_name)
-    File.read("#{__dir__}/fixtures/#{file_name}.html").gsub("\n", '')
+    File.read("#{__dir__}/fixtures/#{file_name}.html").gsub("\n", "")
   end
 
   test_methods = TestHexletCode.new({}).methods.select { |method| method.start_with? "test_" }

@@ -2,6 +2,7 @@
 
 module HexletCode
   module Inputs
+    # Class TextInput
     class TextInput < BaseInput
       COLS = 20
       ROWS = 40

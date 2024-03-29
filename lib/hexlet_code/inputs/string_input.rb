@@ -2,6 +2,7 @@
 
 module HexletCode
   module Inputs
+    # Class StringInput
     class StringInput < BaseInput
       def self.build(options, value)
         options[:type] = "text"

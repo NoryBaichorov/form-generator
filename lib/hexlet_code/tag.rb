@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
+  # Module Tag
   module Tag
     SINGLE_TAGS = %w[br input img].freeze
 
@@ -13,7 +14,7 @@ module HexletCode
     end
 
     def self.generate_submit(submit)
-      HexletCode::Tag.build('input', submit[:options]) { submit[:value] } if submit[:options]
+      HexletCode::Tag.build("input", submit[:options]) { submit[:value] } if submit[:options]
     end
 
     def self.generate_inputs(inputs)
