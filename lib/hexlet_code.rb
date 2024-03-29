@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 require_relative "hexlet_code/version"
+require 'active_support/inflector'
 
+# Module HexletCode
 module HexletCode
   class Error < StandardError; end
 
-  # Class Tag
-  class Tag
-    def self.build(tag_name, options = {})
-      attributes = options.each_with_object([]) do |obj, acc|
-        k, v = obj
-        acc << "#{k}=\"#{v}\""
-      end
+  autoload :Tag, "#{__dir__}/hexlet_code/tag"
+  autoload :Form, "#{__dir__}/hexlet_code/form"
+  autoload :Render, "#{__dir__}/hexlet_code/render"
+  autoload :Inputs, "#{__dir__}/hexlet_code/inputs"
 
-      "<#{tag_name} #{attributes.join(" ")}>"
-    end
+  def self.form_for(struct, options = {})
+    form = HexletCode::Form.new(struct, **options)
+
+    yield(form) if block_given?
+
+    Render.render_form(form)
   end
 end
