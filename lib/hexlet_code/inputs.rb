@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module HexletCode
-  # Module Inputs
   module Inputs
     autoload :BaseInput, "#{__dir__}/inputs/base_input"
     autoload :StringInput, "#{__dir__}/inputs/string_input"

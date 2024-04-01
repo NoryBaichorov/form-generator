@@ -14,13 +14,13 @@ module HexletCode
     end
 
     def self.generate_submit(submit)
-      HexletCode::Tag.build("input", submit[:options]) { submit[:value] } if submit[:options]
+      HexletCode::Tag.build('input', submit[:options]) { submit[:value] } if submit[:options]
     end
 
     def self.generate_inputs(inputs)
-      result = ""
+      result = ''
       inputs.each do |input|
-        input_name = input[:field_type].empty? ? "String" : input[:field_type].capitalize
+        input_name = input[:field_type].empty? ? 'String' : input[:field_type].capitalize
         result += "HexletCode::Inputs::#{input_name}Input".constantize.build(input[:options],
                                                                              input[:value])
       end
@@ -29,7 +29,7 @@ module HexletCode
     end
 
     def self.tag_options(options)
-      result = ""
+      result = ''
 
       if options.any?
         options.each do |key, value|

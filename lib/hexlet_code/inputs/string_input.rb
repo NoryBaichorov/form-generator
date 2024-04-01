@@ -2,13 +2,12 @@
 
 module HexletCode
   module Inputs
-    # Class StringInput
     class StringInput < BaseInput
       def self.build(options, value)
-        options[:type] = "text"
+        options[:type] = 'text'
         options[:value] = value
 
-        string_input = HexletCode::Tag.build("input", options)
+        string_input = HexletCode::Tag.build('input', options)
 
         label(options[:name]) + string_input
       end
