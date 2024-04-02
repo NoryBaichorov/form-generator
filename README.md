@@ -1,5 +1,5 @@
 # HexletCode
-The gem makes it easy to create forms like SimpleGem.
+This gem makes it easy to create forms like SimpleForm gem.
 
 ## How to install
 Add this line to your application's Gemfile:
