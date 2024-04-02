@@ -1,31 +1,61 @@
 # HexletCode
+The gem makes it easy to create forms like SimpleGem.
 
-TODO: Delete this and the text below, and describe your gem
+## How to install
+Add this line to your application's Gemfile:
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+```sh
+gem 'hexlet_code'
+```
+And then execute:
+```
+$ bundle install
+```
+Or install it yourself as:
+```
+bundle install hexlet_code
+```
 
 ## Usage
+Module `HexletCode` has one method `form_for(struct, options = {})`
 
-TODO: Write usage instructions here
+You can use that method without block to create empty HTML forms.
 
-## Development
+```ruby
+HexletCode.form_for user, url: '/users' do |f|
+end
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+# <form action="/users" method="post"></form>
+```
+And if you want to fill your form with different types of inputs, just pass some data to block. For that action you can use methods `input` and `submit`.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+`input` will add label and input inside your form. It has optional parameter `as`, you can send it with `text` symbol and then you will get `textarea` instead of `input`.
 
-## Contributing
+And `submit` method will add button to your form.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code.
+```ruby
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job
+  f.submit
+end
+
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" type="text">
+#   <label for="job">Job</label>
+#   <input name="job" type="text" value="hexlet">
+#   <input type="submit" value="Save">
+# </form>
+```
+
+## Makefile
+You can run different commands with the help of Makefile.
+
+For example:
+
+`make install` - to install this gem
+
+`make lint` - to check code for mistakes
+
+`make test` - to run tests
