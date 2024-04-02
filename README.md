@@ -4,7 +4,7 @@ The gem makes it easy to create forms like SimpleGem.
 ## How to install
 Add this line to your application's Gemfile:
 
-```sh
+```ruby
 gem 'hexlet_code'
 ```
 And then execute:
@@ -13,7 +13,7 @@ $ bundle install
 ```
 Or install it yourself as:
 ```
-bundle install hexlet_code
+$ bundle install hexlet_code
 ```
 
 ## Usage
