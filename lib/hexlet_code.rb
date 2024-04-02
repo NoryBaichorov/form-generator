@@ -3,10 +3,7 @@
 require_relative 'hexlet_code/version'
 require 'active_support/inflector'
 
-# Module HexletCode
 module HexletCode
-  class Error < StandardError; end
-
   autoload :Tag, "#{__dir__}/hexlet_code/tag"
   autoload :Form, "#{__dir__}/hexlet_code/form"
   autoload :Render, "#{__dir__}/hexlet_code/render"

@@ -7,10 +7,7 @@ module HexletCode
       ROWS = 40
 
       def self.build(options, value)
-        options[:cols] = COLS unless options.key?(:cols)
-        options[:rows] = ROWS unless options.key?(:rows)
-
-        textarea = HexletCode::Tag.build('textarea', options) { value }
+        textarea = HexletCode::Tag.build('textarea', { cols: COLS, rows: ROWS }.merge(options)) { value }
 
         label(options[:name]) + textarea
       end

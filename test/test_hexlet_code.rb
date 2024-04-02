@@ -94,11 +94,4 @@ class TestHexletCode < Minitest::Test
       end
     end
   end
-
-  def read_fixture(file_name)
-    File.read("#{__dir__}/fixtures/#{file_name}.html").gsub('\n', '')
-  end
-
-  test_methods = TestHexletCode.new({}).methods.select { |method| method.start_with? 'test_' }
-  raise 'TestHexletCode has not tests!' if test_methods.empty?
 end
