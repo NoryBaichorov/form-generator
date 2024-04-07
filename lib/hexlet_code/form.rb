@@ -2,7 +2,6 @@
 
 module HexletCode
   class Form
-    attr_accessor :struct, :action, :method
     attr_reader :form_body
 
     def initialize(struct, **options)
@@ -13,16 +12,17 @@ module HexletCode
       @form_body = {
         inputs: [],
         submit: {},
-        form_options: { action:, method: }.merge(options.except(:url, :method))
+        form_options: { action: @action, method: @method }.merge(options.except(:url, :method))
       }
     end
 
     def input(field_name, options = {})
       field_type = options.fetch(:as, '').to_s
+
       new_options = options.except(:as)
+      new_options[:name] = field_name
 
       value = @struct.public_send(field_name)
-      new_options[:name] = field_name
 
       @form_body[:inputs] << build_attributes(new_options, field_type, value)
     end

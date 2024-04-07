@@ -2,16 +2,24 @@
 
 module HexletCode
   module Tag
-    SINGLE_TAGS = %w[br input img].freeze
+    def self.build(tag_name, tag_options)
+      puts 'FROM TAG ===================================='
+      puts tag_options.inspect
 
-    def self.build(tag_name, options = {}, inputs = [], submit = {})
-      inputs = Render.generate_inputs(inputs)
-      submit = Render.generate_submit(submit)
-      tag_options = Render.tag_options(options)
+      inputs = Render.generate_inputs(tag_options.form_body[:inputs])
+      submit = Render.generate_submit(tag_options.form_body[:submit])
 
-      return "<#{tag_name}#{tag_options}>" if SINGLE_TAGS.include?(tag_name)
+      tag_attributes = tag_attributes(tag_options.form_body[:form_options])
 
-      "<#{tag_name}#{tag_options}>#{inputs}#{yield if block_given?}#{submit}</#{tag_name}>"
+      return "<#{tag_name}#{tag_attributes}>" if Render::SINGLE_TAGS.include?(tag_name)
+
+      "<#{tag_name}#{tag_attributes}>#{inputs}#{yield if block_given?}#{submit}</#{tag_name}>"
+    end
+
+    def self.tag_attributes(options)
+      options.map do |key, value|
+        " #{key}=\"#{value}\""
+      end.join
     end
   end
 end
