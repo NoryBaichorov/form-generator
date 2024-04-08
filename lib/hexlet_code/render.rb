@@ -5,10 +5,12 @@ module HexletCode
     SINGLE_TAGS = %w[br input img].freeze
 
     def self.render_form(form)
-      puts 'FROM RENDER ============================='
-      puts form.inspect
+      form_body = form.form_body
 
-      HexletCode::Tag.build('form', form)
+      inputs = generate_inputs(form_body[:inputs])
+      submit = generate_submit(form_body[:submit])
+
+      HexletCode::Tag.build('form', form_body[:form_options]) { "#{inputs}#{submit}" }
     end
 
     def self.generate_submit(submit)

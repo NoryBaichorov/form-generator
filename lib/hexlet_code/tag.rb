@@ -2,21 +2,15 @@
 
 module HexletCode
   module Tag
-    def self.build(tag_name, tag_options)
-      puts 'FROM TAG ===================================='
-      puts tag_options.inspect
+    def self.build(tag_name, options = {})
+      tag_options = build_tag_attributes(options)
 
-      inputs = Render.generate_inputs(tag_options.form_body[:inputs])
-      submit = Render.generate_submit(tag_options.form_body[:submit])
+      return "<#{tag_name}#{tag_options}>" if Render::SINGLE_TAGS.include?(tag_name)
 
-      tag_attributes = tag_attributes(tag_options.form_body[:form_options])
-
-      return "<#{tag_name}#{tag_attributes}>" if Render::SINGLE_TAGS.include?(tag_name)
-
-      "<#{tag_name}#{tag_attributes}>#{inputs}#{yield if block_given?}#{submit}</#{tag_name}>"
+      "<#{tag_name}#{tag_options}>#{yield if block_given?}</#{tag_name}>"
     end
 
-    def self.tag_attributes(options)
+    def self.build_tag_attributes(options)
       options.map do |key, value|
         " #{key}=\"#{value}\""
       end.join
